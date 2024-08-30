@@ -1,12 +1,13 @@
 'use server';
 
-import { createAuthSession } from "@/lib/auth";
+import { createAuthSession, destroySession } from "@/lib/auth";
 import { hashUserPassword, verifyPassword } from "@/lib/hash";
 import { createUser, getUserByEmail } from "@/lib/user";
 import { redirect } from "next/navigation";
 
 
 export async function signup(prevState, formData) {
+  console.log('signup action')
   const email = formData.get('email');
   const password = formData.get('password');
 
@@ -42,6 +43,7 @@ export async function signup(prevState, formData) {
 }
 
 export async function login(prevState, formData) {
+  console.log('login action')
   const email = formData.get('email');
   const password = formData.get('password');
 
@@ -68,4 +70,9 @@ export async function login(prevState, formData) {
   //create a new session
   await createAuthSession(existingUser.id);
   redirect('/training');
+}
+
+export async function logout() {
+  await destroySession()
+  redirect('/');
 }

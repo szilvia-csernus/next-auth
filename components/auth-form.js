@@ -4,11 +4,9 @@ import Link from 'next/link';
 import { useFormState } from 'react-dom';
 
 import { login, signup } from '@/actions/auth-actions';
-import { useSearchParams } from 'next/navigation';
 
 export default function AuthForm({ mode }) { // mode is either 'login' or 'signup'
-  const searchParams = useSearchParams();
-  const isLogin = searchParams.get("mode") === "login";
+  const isLogin = mode === "login";
   const userAction = isLogin ? login : signup;
 
   const [formState, formAction] = useFormState(userAction, {});
