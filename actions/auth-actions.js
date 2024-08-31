@@ -7,7 +7,6 @@ import { redirect } from "next/navigation";
 
 
 export async function signup(prevState, formData) {
-  console.log('signup action')
   const email = formData.get('email');
   const password = formData.get('password');
 
@@ -43,7 +42,6 @@ export async function signup(prevState, formData) {
 }
 
 export async function login(prevState, formData) {
-  console.log('login action')
   const email = formData.get('email');
   const password = formData.get('password');
 
